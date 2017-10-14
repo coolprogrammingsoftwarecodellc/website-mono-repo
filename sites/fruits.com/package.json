@@ -1,0 +1,45 @@
+{
+  "name": "fruits.com",
+  "version": "1.0.0",
+  "description": "fruits.com!!!",
+  "main": "index.html",
+  "deploy": {
+    "buildDir": "_site",
+    "ignoreDiff": "feed.xml"
+  },
+  "scripts": {
+    "preinstall": "bundle install",
+    "clean": "rm -R $npm_package_buildDir",
+    "watch-assets": "webpack --watch",
+    "build-assets": "webpack --env.prod",
+    "watch-site": "bundle exec jekyll serve --incremental",
+    "build-site": "bundle exec jekyll build",
+    "watch": "run-p watch-assets watch-site",
+    "build": "run-s build-assets build-site"
+  },
+  "keywords": [
+    "programming",
+    "code",
+    "cool",
+    "code"
+  ],
+  "author": "Sean Fridman",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "file://../../repos/fruit.com"
+  },
+  "dependencies": {
+    "common-styles": "../../packages/common-styles",
+    "fruit-brand-styles": "../../packages/fruit-brand-styles",
+    "normalize.css": "^7.0.0"
+  },
+  "devDependencies": {
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.1",
+    "npm-run-all": "^4.1.1",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-loader": "^2.0.7",
+    "webpack": "^3.7.1"
+  }
+}

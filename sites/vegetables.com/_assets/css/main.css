@@ -1,0 +1,11 @@
+@import "~common-styles";
+@import "~vegetable-brand-styles";
+
+.vegetable {
+  background-color: green;
+  margin: 2rem 0;
+  width: 100px;
+  height: 280px;
+  border-top: 20px solid brown;
+  transform: rotate(-10deg);
+}

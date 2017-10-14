@@ -1,0 +1,10 @@
+@import "~common-styles";
+@import "~fruit-brand-styles";
+
+.fruit {
+  background-color: orange;
+  margin: 2rem 0;
+  width: 200px;
+  height: 180px;
+  border-top: 20px solid green;
+}
