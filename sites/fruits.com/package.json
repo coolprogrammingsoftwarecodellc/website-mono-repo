@@ -27,7 +27,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "file://../../repos/fruit.com"
+    "url": "git@github.com:coolprogrammingsoftwarecodellc/fruits.com.git"
   },
   "dependencies": {
     "common-styles": "../../packages/common-styles",

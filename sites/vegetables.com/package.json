@@ -27,7 +27,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "file://../../repos/vegetables.com"
+    "url": "git@github.com:coolprogrammingsoftwarecodellc/vegetables.com.git"
   },
   "dependencies": {
     "common-styles": "../../packages/common-styles",
