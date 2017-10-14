@@ -4,6 +4,7 @@ before_install:
   - nvm install 6
 install:
   - npm install
+script: echo hi
 deploy:
   - provider: script
     script: node deploy .
