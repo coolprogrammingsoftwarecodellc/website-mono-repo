@@ -20,6 +20,7 @@ const sites = readdirSync(sitesDir);
 
 const execIn = cwd => (command, options = {}) => (
   execSync(command, Object.assign(
+    { stdio: 'inherit' },
     options,
     { cwd }
   ))
