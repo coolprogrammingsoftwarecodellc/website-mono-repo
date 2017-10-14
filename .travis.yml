@@ -4,10 +4,10 @@ before_install:
 - nvm install 6
 - eval `ssh-agent -s`
 - gem update --system
-before_deploy:
+before_script:
 - npm install
-script: echo hi im a computer
-deploy:
-- provider: script
-- skip_cleanup: true
-- script: node deploy .
+script: node deploy .
+# deploy:
+# - provider: script
+# - skip_cleanup: true
+# - script: node deploy .
