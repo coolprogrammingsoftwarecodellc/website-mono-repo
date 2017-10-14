@@ -4,7 +4,6 @@ before_install:
 - nvm install 6
 before_deploy:
 - npm install
-- chmod 600 ../deploy_key
 - eval `ssh-agent -s`
 - ssh-add wwwtf_deploy
 script: echo hi im a computer
