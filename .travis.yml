@@ -4,5 +4,11 @@ before_install:
   - in wwwtf_deploy.enc -out wwwtf_deploy -d
   - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
   - nvm install 6
-install: npm install
-script: node deploy .
+before_deploy:
+  - npm install
+  - ssh-add wwwtf_deploy
+deploy:
+  - provider: script
+  - script: node deploy .
+  - on:
+      branch: master
