@@ -6,7 +6,7 @@
   "deploy": {
     "buildDir": "_site",
     "ignoreDiff": "feed.xml",
-    "key": "$encrypted_ed85884be5bc_key",
+    "key": "encrypted_ed85884be5bc_key",
     "iv": "encrypted_ed85884be5bc_iv"
   },
   "scripts": {
