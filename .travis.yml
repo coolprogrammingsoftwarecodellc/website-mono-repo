@@ -1,7 +1,6 @@
 language: ruby
 before_install:
-  - openssl aes-256-cbc -K $encrypted_f953519d3894_key -iv $encrypted_f953519d3894_iv
-  - in wwwtf_deploy.enc -out wwwtf_deploy -d
+  - openssl aes-256-cbc -K $encrypted_f953519d3894_key -iv $encrypted_f953519d3894_iv -in wwwtf_deploy.enc -out wwwtf_deploy -d
   - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
   - nvm install 6
 before_deploy:
