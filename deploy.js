@@ -64,7 +64,7 @@ sites.forEach(site => {
   const deployCloneExec = execIn(tmpDir);
 
   try {
-    console.log(`\nCloning ${site} deployment repo\n`);    
+    console.log(`\nCloning ${site} deployment repo from ${repository.url}\n`);
     execSync(`git clone ${repository.url} ${tmpDir} --quiet`);
     
     deployCloneExec(`cp -Rf ${path.join(siteDir, buildDir)}/* .`);    
