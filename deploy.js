@@ -18,20 +18,23 @@ const sitesDir = path.join(monoRepoDir, 'sites');
 
 const sites = readdirSync(sitesDir);
 
-const execIn = cwd => (command, options = {}) => (
+const exec = (cmd, options = {}) => (
   execSync(command, Object.assign(
-    { stdio: 'inherit' },
-    options,
-    { cwd }
+    { stdio: 'inherit', env: process.env },
+    options
   ))
+)
+
+const execIn = cwd => (command, options = {}) => (
+  exec(command, Object.assign(options, { cwd }))
 );
 
 const monoRepoExec = execIn(monoRepoDir);
 
 console.log(`\nStarting deploy script for [ ${sites.join(', ')} ]\n`)
 
-execSync('git config --global user.name "WWWTF Deploy Bot"');
-execSync('git config --global user.email "deploy@wwwtf.berlin"');
+exec('git config --global user.name "WWWTF Deploy Bot"');
+exec('git config --global user.email "deploy@wwwtf.berlin"');
 
 sites.forEach(site => {
   const siteDir = path.join(sitesDir, site);
@@ -65,7 +68,7 @@ sites.forEach(site => {
 
   try {
     console.log(`\nCloning ${site} deployment repo from ${repository.url}\n`);
-    execSync(`git clone ${repository.url} ${tmpDir}`);
+    exec(`git clone ${repository.url} ${tmpDir}`);
     
     deployCloneExec(`cp -Rf ${path.join(siteDir, buildDir)}/* .`);    
   } catch (err) {
@@ -106,7 +109,7 @@ sites.forEach(site => {
     }
   }
 
-  execSync(`rm -Rf ${tmpDir}`);
+  exec(`rm -Rf ${tmpDir}`);
 });
 
 function ignorePathspec (ignores) {
