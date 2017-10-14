@@ -44,9 +44,6 @@ sites.forEach(site => {
   const packageJson = require(packagePath);
   const { deploy, repository, scripts } = packageJson;
 
-  // Mock URL TODO Remove
-  repository.url = `file://${path.join(monoRepoDir, 'repos', site)}`;
-  
   if (!deploy || !repository || !repository.url || !scripts.build) {
     return console.log(`\Bad deploy config for ${site}. Skipping.\n`)
   }
