@@ -3,6 +3,7 @@ before_install:
 - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
 - nvm install 6
 - eval `ssh-agent -s`
+- gem update --system
 before_deploy:
 - npm install
 script: echo hi im a computer
