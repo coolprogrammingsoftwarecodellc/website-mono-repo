@@ -15,8 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "emoji-random": "^0.1.2",
-    "tmp": "0.0.33",
-    "webpack": "^3.7.1"
+    "tmp": "0.0.33"
   },
   "devDependencies": {}
 }
