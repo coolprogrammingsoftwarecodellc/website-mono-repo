@@ -1,14 +1,12 @@
 language: ruby
 before_install:
+- eval `ssh-agent -s`
+- ssh-keygen -t rsa -b 4096 -P "" -f "~/.ssh/id_rsa" -q
+- ssh-add "~/.ssh/id_rsa"
 - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
 - nvm install 6
 - npm install npm@5 -g
-- eval `ssh-agent -s`
 - gem update --system
 before_script:
 - npm install
 script: node deploy .
-# deploy:
-# - provider: script
-# - skip_cleanup: true
-# - script: node deploy .

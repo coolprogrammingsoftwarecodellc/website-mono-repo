@@ -98,8 +98,9 @@ sites.forEach(site => {
       console.log(`\nPushing changes to ${site} deployment repo\n`);
 
       deployCloneExec(`openssl aes-256-cbc -K $${deploy.key} -iv $${deploy.iv} -in id_rsa.enc -out id_rsa -d`);
-      deployCloneExec('ssh-add id_rsa');
-      deployCloneExec('git push origin master');
+      deployCloneExec(
+        'GIT_SSH_COMMAND="ssh -i id_rsa -F /dev/null" git push origin master'
+      );
     } catch (err) {
       return err;
     }
