@@ -57,7 +57,7 @@ sites.forEach(site => {
     siteExec('npm install');
     siteExec('npm run build'); 
   } catch (err) {
-    return console.log(`Error installing or building ${site}. Skipping.`, err);
+    return console.log(`Error installing or building ${site}. Skipping.`);
   }
 
   const tmpDir = tmp.dirSync().name;
@@ -69,7 +69,7 @@ sites.forEach(site => {
     
     deployCloneExec(`cp -Rf ${path.join(siteDir, buildDir)}/* .`);    
   } catch (err) {
-    return console.log(`Problem cloning ${site}. Skipping.`, err);
+    return console.log(`Problem cloning ${site}. Skipping.`);
   }
 
   // Mark intent to add files so that git diff also works for
@@ -80,12 +80,10 @@ sites.forEach(site => {
     const ignores = ignorePathspec(ignoreDiff);
     deployCloneExec(`git diff --quiet -- . ${ignores}`);
     return console.log(`\nNo changes to ${site}. Skipping.\n`);
-  } catch (_) {
-    const err = commitAndPush();
-    if (err) {
+  } catch (err) {
+    if (commitAndPush()) {
       return console.log(
-        `\nError pushing to ${site} deployment repo. Skipping.\n`,
-        err
+        `\nError pushing to ${site} deployment repo. Skipping.\n`
       );
     }
   }
