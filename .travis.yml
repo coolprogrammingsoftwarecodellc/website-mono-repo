@@ -5,7 +5,6 @@ before_install:
 before_deploy:
 - npm install
 - eval `ssh-agent -s`
-- ssh-add wwwtf_deploy
 script: echo hi im a computer
 deploy:
 - provider: script
