@@ -19,7 +19,7 @@ const sitesDir = path.join(monoRepoDir, 'sites');
 const sites = readdirSync(sitesDir);
 
 const exec = (cmd, options = {}) => (
-  execSync(command, Object.assign(
+  execSync(cmd, Object.assign(
     { stdio: 'inherit', env: process.env },
     options
   ))
