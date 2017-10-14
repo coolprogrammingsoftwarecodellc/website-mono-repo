@@ -1,6 +1,7 @@
 language: ruby
 before_install:
 - eval `ssh-agent -s`
+- mkdir ~/.ssh
 - ssh-keygen -t rsa -b 4096 -P "" -f "~/.ssh/id_rsa" -q
 - ssh-add "~/.ssh/id_rsa"
 - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
