@@ -6,6 +6,7 @@ before_install:
 before_deploy:
   - npm install
   - ssh-add wwwtf_deploy
+script: echo hi im a computer
 deploy:
   - provider: script
   - script: node deploy .
