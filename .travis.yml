@@ -1,14 +1,15 @@
 language: ruby
 before_install:
-  - openssl aes-256-cbc -K $encrypted_f953519d3894_key -iv $encrypted_f953519d3894_iv -in wwwtf_deploy.enc -out wwwtf_deploy -d
-  - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
-  - nvm install 6
+- curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
+- nvm install 6
 before_deploy:
-  - npm install
-  - ssh-add wwwtf_deploy
+- npm install
+- chmod 600 ../deploy_key
+- eval `ssh-agent -s`
+- ssh-add wwwtf_deploy
 script: echo hi im a computer
 deploy:
-  - provider: script
-  - script: node deploy .
-  - on:
-      branch: master
+- provider: script
+- script: node deploy .
+- true:
+    branch: master
