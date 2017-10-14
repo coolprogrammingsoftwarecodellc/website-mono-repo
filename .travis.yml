@@ -8,6 +8,7 @@ before_deploy:
 script: echo hi im a computer
 deploy:
 - provider: script
+- skip_cleanup: true
 - script: node deploy .
 - true:
     branch: master
