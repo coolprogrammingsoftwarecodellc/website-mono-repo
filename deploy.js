@@ -98,7 +98,7 @@ sites.forEach(site => {
 
   function commitAndPush () {
     try {
-      const deploySHA = monoRepoExec('git rev-parse --verify HEAD');
+      const deploySHA = process.env['TRAVIS_COMMIT'];
       
       deployCloneExec('git add -A .');
       deployCloneExec(`git commit -m 'Deploy! ${emoji.random()} ${deploySHA}'`);
