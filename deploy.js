@@ -7,6 +7,7 @@ const { readdirSync, existsSync } = require('fs');
 const { execSync } = require('child_process');
 const tmp = require('tmp');
 const emoji = require('emoji-random');
+const parseGitUrl = require('git-url-parse');
 
 if (!process.argv[2]) {
   console.log('Usage: deploy.js {mono-repo-root}');
@@ -53,6 +54,9 @@ sites.forEach(site => {
   }
 
   const { buildDir, ignoreDiff } = deploy;
+  const gitUrlObj = parseGitUrl(repository.url);
+  const sshUrl = gitUrlObj.toString('ssh');
+  const httpsUrl = gitUrlObj.toString('https');
 
   console.log(`\nInstalling and building ${site}\n`);
 
@@ -67,8 +71,9 @@ sites.forEach(site => {
   const deployCloneExec = execIn(tmpDir);
 
   try {
-    console.log(`\nCloning ${site} deployment repo from ${repository.url}\n`);
-    exec(`git clone ${repository.url} ${tmpDir}`);
+    console.log(`\nCloning ${site} deployment repo from ${httpsUrl}\n`);
+    // We need to clone via HTTPS since we don't know what the SSH key is yet
+    exec(`git clone ${httpsUrl} ${tmpDir}`);
     
     deployCloneExec(`cp -Rf ${path.join(siteDir, buildDir)}/* .`);    
   } catch (err) {
@@ -102,7 +107,7 @@ sites.forEach(site => {
 
       deployCloneExec(`openssl aes-256-cbc -K $${deploy.key} -iv $${deploy.iv} -in id_rsa.enc -out id_rsa -d`);
       deployCloneExec(
-        'GIT_SSH_COMMAND="ssh -i id_rsa -F /dev/null" git push origin master'
+        `GIT_SSH_COMMAND="ssh -i id_rsa -F /dev/null" git push ${sshUrl} master`
       );
     } catch (err) {
       return err;
