@@ -33,8 +33,7 @@
   },
   "dependencies": {
     "common-styles": "../../packages/common-styles",
-    "fruit-brand-styles": "../../packages/fruit-brand-styles",
-    "normalize.css": "^7.0.0"
+    "fruit-brand-styles": "../../packages/fruit-brand-styles"
   },
   "devDependencies": {
     "css-loader": "^0.28.7",
